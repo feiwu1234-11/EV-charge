@@ -6,7 +6,7 @@ format long
 k = 1; % 一个常数
 epsilon = 1e-6; % 一个非常小的数值，避免除零
 DT = 1:45; % 时间段的集合，步长为1分钟
-S = 1:3; % 充电站集合S
+S = 1:4; % 充电站集合S
 rho_0 = 21.8; % 初始充电价格
 Q_min = 5; % 最小需求量，假设为5
 P_max = 1000; % 最大电网提供功率，假设为1000
@@ -29,7 +29,7 @@ for j=2:length(CS_position)
 %     bsf(i)=income_max(i);
     if sigma>sigma_max(i)&&j>1
          sigma_max(i)=sigma;
-%         income_max(i)=income;
+        income_max(i)=income;
         u_s(i)=j;
     end
 end
