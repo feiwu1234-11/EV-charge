@@ -70,7 +70,7 @@ for i = 1:num_simulations
     AF = range_AF(1) + rand()*(range_AF(2)-range_AF(1));
     Average_AF(i)=AF;
     % 使用当前参数值运行模拟
-    [~,~,~,P_DR,~,income,~,~] = optimization([5.71356260459842,5.87559320918147,5.76080259485654,6.08609913431111],EV_position,CS_position,EV_SOC_0,P_PV,[AF, 5, 1]);
+    [~,~,~,P_DR,~,income,~,~] = optimization([5.31309806929290,	5.61563847037892,	5.52100680127222,	5.96439148811025],EV_position,CS_position,EV_SOC_0,P_PV,[AF, 5, 1]);
     charging_energy =sum(sum(P_DR));
     profit=income;
     % 存储结果
@@ -117,7 +117,7 @@ for i = 1:num_simulations
     Average_tau_ts(i)=tau_ts;
 
    % 使用当前参数值运行模拟
-    [~,~,~,P_DR,~,income,~,~] = optimization([5.71356260459842,5.87559320918147,5.76080259485654,6.08609913431111],EV_position,CS_position,EV_SOC_0,P_PV,[0.2, tau_ts, 1]);
+    [~,~,~,P_DR,~,income,~,~] = optimization([5.31309806929290,	5.61563847037892,	5.52100680127222,	5.96439148811025],EV_position,CS_position,EV_SOC_0,P_PV,[0.2, tau_ts, 1]);
     charging_energy =sum(sum(P_DR));
     profit=income;
     % 存储结果
@@ -162,7 +162,7 @@ for i = 1:num_simulations
     alpha = range_alpha(1) + rand()*(range_alpha(2)-range_alpha(1));
     Average_alpha(i)=alpha;
    % 使用当前参数值运行模拟
-    [~,~,~,P_DR,~,income,~,~] = optimization([5.71356260459842,5.87559320918147,5.76080259485654,6.08609913431111],EV_position,CS_position,EV_SOC_0,P_PV,[0.2, 5, alpha]);
+    [~,~,~,P_DR,~,income,~,~] = optimization([5.31309806929290,	5.61563847037892,	5.52100680127222,	5.96439148811025],EV_position,CS_position,EV_SOC_0,P_PV,[0.2, 5, alpha]);
     charging_energy =sum(sum(P_DR));
     profit=income;
     % 存储结果

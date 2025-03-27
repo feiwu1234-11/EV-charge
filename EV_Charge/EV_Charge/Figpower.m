@@ -9,13 +9,13 @@ x = 1:1:45; % DR operation time(min)
 % 绘制阶梯图
 hold on
 y = DataFig11(1,:); % Charging power (kW)
-plot(x, y, 'o-');
+plot(x, y, '-');
 y = DataFig11(2,:); % Charging power (kW)
-plot(x, y, 'o-');
+plot(x, y, '-');
 y = DataFig11(3,:); % Charging power (kW)
-plot(x, y, 'o-');
+plot(x, y, '-');
 y = DataFig11(4,:); % Charging power (kW)
-plot(x, y, 'o-');
+plot(x, y, '-');
 % 设置横轴范围
 xlim([0,45]);
 
@@ -23,10 +23,10 @@ xlim([0,45]);
 xticks(0:5:45);
 
 % 设置纵范围
-ylim([0,5000]);
+ylim([0,3000]);
 
 % 设置y轴刻度
-yticks(0:500:5000);
+yticks(0:300:3000);
 % 设置网格和标签
 grid on;
 box on;
