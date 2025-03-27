@@ -1,4 +1,4 @@
-function [fitness,SOC_F,SOC_time,P_DR,u_s,income123,sigma_max,P_DSO] = optimization(A,EV_position,CS_position,EV_SOC_0,P_PV)
+function [fitness,SOC_F,SOC_time,P_DR,u_s,income123,sigma_max,P_DSO] = optimization(A,EV_position,CS_position,EV_SOC_0,P_PV,B)
 %   优化模型
 format long
 %   此处显示详细说明
@@ -18,12 +18,12 @@ income_max=zeros(1,length(EV_position));
 bsf=zeros(1,length(EV_position));
 for i=1:length(EV_position)
 u_s(i)=1;
-[sigma_max1,~,~,~,~,E_i_max]=EV_sigma(EV_position(:,i),CS_position(:,1),EV_SOC_0(i),A(1),rho_0);
+[sigma_max1,~,~,~,~,E_i_max]=EV_sigma(EV_position(:,i),CS_position(:,1),EV_SOC_0(i),A(1),rho_0,B);
 sigma_max(i)=sigma_max1;
 income_max(i)=E_i_max*(rho_0-A(1));
 for j=2:length(CS_position)
-    [sigma,~,~,~,~,~]=EV_sigma(EV_position(:,i),CS_position(:,j),EV_SOC_0(i),A(j),rho_0);
-   [~,~,~,~,~,E_i]= EV_sigma(EV_position(:,i),CS_position(:,j),EV_SOC_0(i),A(j),rho_0);
+    [sigma,~,~,~,~,~]=EV_sigma(EV_position(:,i),CS_position(:,j),EV_SOC_0(i),A(j),rho_0,B);
+   [~,~,~,~,~,E_i]= EV_sigma(EV_position(:,i),CS_position(:,j),EV_SOC_0(i),A(j),rho_0,B);
     income=E_i*(rho_0-A(j));
 %      asd=sigma*income;
 %     bsf(i)=income_max(i);
@@ -56,7 +56,7 @@ for s = 1:length(CS_position)
                 x=1;
             end
            
-            [~,a,b,SOC_F(i),P_EV,~]=EV_sigma(EV_position(:,i),CS_position(:,s),EV_SOC_0(i),A(j),rho_0);
+            [~,a,b,SOC_F(i),P_EV,~]=EV_sigma(EV_position(:,i),CS_position(:,s),EV_SOC_0(i),A(j),rho_0,B);
             P_DR(s,t)=P_DR(s,t)+P_EV(t)*x;
             SOC_time(1,i,s)=a*x;
             SOC_time(2,i,s)=b*x;
@@ -80,10 +80,10 @@ J = 0;
             J = J + 1 / (P_PV(s, t) + epsilon) * min(P_DR(s, t), P_PV(s, t));
         end
     end
- sum1=0;
-    for i=1:length(EV_position)
-    sum1=sum1+sigma_max(i)*income_max(i);
-    end
+ % sum1=0;
+ %    for i=1:length(EV_position)
+ %    sum1=sum1+sigma_max(i)*income_max(i);
+ %    end
  rho=zeros(1,length(CS_position));
 for i=1:length(CS_position)
 rho(i)=rho_0;
@@ -95,7 +95,7 @@ for s=1:length(CS_position)
     end
 end
     % 计算目标函数
-    objective =  k * J+sum(P_DR .*  transpose(rho - A), 'all');
+   % objective =  k * J+sum(P_DR .*  transpose(rho - A), 'all');
      objective =  k * J+ income123;
 %     fitness=objective;
     %计算总时长

@@ -1,4 +1,4 @@
-function [sigma,tau_cs,tau_e,EV_SOC_F,P_EV,E_i] = EV_sigma(EV_position,CS_position,EV_SOC_0,A,rho_0)
+function [sigma,tau_cs,tau_e,EV_SOC_F,P_EV,E_i] = EV_sigma(EV_position,CS_position,EV_SOC_0,A,rho_0,B)
 % 效用函数
 format long
 % sigma为效用,EV_position为电动汽车位置，CS_position为充电站位置，A为激励,P为充电功率,rho为充电站不实施DR计划的充电价格
@@ -31,7 +31,7 @@ end
 for i=tau_cs:tau_de
 P_EV(i)=P(i-tau_cs+1);
 end
-B=[0.2,5,1];
+% B=[0.2,5,1];
 % B(4)*(1/sqrt(sum((EV_position-CS_position).^2)))
 sigma=B(1)*max(1,0.9/EV_SOC_0)+B(2)*(A/rho_0)+B(3)*((tau_ds-tau_arrive)/(tau_e-tau_cs));%B就是三个权重系数
 % sigma=B(1)*(E_i/E_t)+B(2)*(A/rho_0)-B(3)*((tau_cs-tau_arrive)/(tau_e-tau_cs));%B就是三个权重系数
