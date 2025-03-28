@@ -22,27 +22,9 @@ stem(x, y, 'LineWidth', 1.5, 'Marker', 'none', 'Color', 'b');
 y = SOC_time(1,:,1);
 stem(x, y, 'LineWidth', 1.5, 'Marker', 'none', 'Color', 'b');
 
-% y = SOC_time(3,:); 
-% stem(x, y, 'LineWidth', 1.5, 'Marker', 'none', 'Color', 'b');
-% y = SOC_time(2,:);
-% stem(x, y, 'LineWidth', 1.5, 'Marker', 'none', 'Color', 'g');
-% y = SOC_time(1,:);
-% stem(x, y, 'LineWidth', 1.5, 'Marker', 'none', 'Color', 'r');
 % 设置轴标签和标题
 xlabel('EV Number');
 ylabel('Time(min)');
-% % 绘制右侧坐标轴
-% yyaxis right
-% y=DataFigTime(4,:);
-
-% % 设置y等于0的数据点对应的逻辑索引
-% idx = y ~= 0;
-% 
-% % 绘制数据点
-% plot(x(idx), y(idx), '.', 'MarkerSize', 12, 'Color', [0.0039 0.4784 0.6118]);
-% 
-% ax = gca;
-% set(ax,'YColor',[0.3804 0.6706 0.7137]);
 
 % 设置右侧坐标轴的标签和刻度
 ylabel('Utility');

@@ -125,7 +125,7 @@ for i = 1:num_simulations
     profit_results(i) = profit;
 end
 
-% 散点图5：charging_energy_results
+% 散点图3：charging_energy_results
 figure('visible', 'off')
 scatter(Average_tau_ts, charging_energy_results);
 xlabel("Average tau_ts")
@@ -141,7 +141,7 @@ hold off
 
 saveas(gcf, 'sensitivity3.png');
 
-% 散点图6：profit_results
+% 散点图4：profit_results
 figure('visible', 'off')
 scatter(Average_tau_ts, profit_results);
 xlabel("Average tau_ts")
@@ -169,7 +169,7 @@ for i = 1:num_simulations
     charging_energy_results(i) = charging_energy;
     profit_results(i) = profit;
 end
-% 散点图8：charging_energy_results
+% 散点图5：charging_energy_results
 figure('visible', 'off')
 scatter(Average_alpha, charging_energy_results);
 xlabel("Average alpha")
@@ -186,7 +186,7 @@ hold off
 saveas(gcf, 'sensitivity5.png');
 
 
-% 散点图9：profit_results
+% 散点图6：profit_results
 figure('visible', 'off')
 scatter(Average_alpha, profit_results);
 xlabel("Average alpha")
